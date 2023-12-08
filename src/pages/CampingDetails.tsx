@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { CampingArea, CampingDetailsProps } from "../types/types";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
-const CampingDetails = ({username}: CampingDetailsProps) => {
+const CampingDetails = ({ username }: CampingDetailsProps) => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const campingAreaId = Number(id);
@@ -27,7 +27,9 @@ const CampingDetails = ({username}: CampingDetailsProps) => {
   }, [campingAreaId]);
 
   const handleBookCamp = async () => {
-    navigate("/booking", { state: { campingArea: campingArea, username: username} });
+    navigate("/booking", {
+      state: { campingArea: campingArea, username: username },
+    });
   };
 
   return (
@@ -36,7 +38,7 @@ const CampingDetails = ({username}: CampingDetailsProps) => {
         <div>
           <h2>{campingArea.name}</h2>
           <div className="map-container">
-            <LoadScript googleMapsApiKey="AIzaSyAKnomPTGq0cwr8YzkfSfvahHF_6GN7vGk.">
+            <LoadScript googleMapsApiKey="AIzaSyAKnomPTGq0cwr8YzkfSfvahHF_6GN7vGk">
               <GoogleMap
                 center={{
                   lat: campingArea.coordinates.lat,
@@ -46,7 +48,7 @@ const CampingDetails = ({username}: CampingDetailsProps) => {
                 mapContainerStyle={{ height: "400px", width: "100%" }}
               >
                 <Marker
-                  key={campingArea.id} 
+                  key={campingArea.id}
                   position={{
                     lat: campingArea.coordinates.lat,
                     lng: campingArea.coordinates.lng,
