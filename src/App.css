@@ -13,5 +13,24 @@
 
 body {
   font-family: 'Montserrat', sans-serif;
+  background-color: #D8E8ED;
 }
 
+.navbar {
+  background-color: #9587AD ;
+  color: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar__icons__logo,
+.navbar__icons__login,
+.navbar__icons__logout,
+.navbar__icons__book-camp{
+  height: 30px; 
+  margin-right: 10px;
+  cursor: pointer;
+}
