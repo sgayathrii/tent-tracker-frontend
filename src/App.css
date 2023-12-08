@@ -26,11 +26,35 @@ body {
   align-items: center;
 }
 
-.navbar__icons__logo,
+.navbar__icons__logo {
+  height: 50px; 
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 80px;
+}
+
 .navbar__icons__login,
 .navbar__icons__logout,
 .navbar__icons__book-camp{
   height: 30px; 
   margin-right: 10px;
   cursor: pointer;
+}
+
+/* Camping Area */
+.camping-container__area {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.camping-container__area__image {
+  width: 100px;
+  height: 100px;
+}
+
+.camping-container__area__not-available {
+  font-size: 14px;
 }

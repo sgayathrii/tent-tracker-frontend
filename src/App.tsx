@@ -4,6 +4,7 @@
   import Login from "./pages/Login";
   import CampingAreas from "./pages/CampingAreas";
   import Home from "./pages/Home";
+import BookingCamp from "./pages/BookingCamp";
 
   function App() {
     const location = useLocation();
@@ -15,7 +16,8 @@
         <Routes>
           <Route path="/" element={<Home username={username} />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/camping-areas" element={<CampingAreas />} />
+          <Route path="/camping-areas" element={<CampingAreas username={username}/>} />
+          <Route path="/booking" element={<BookingCamp />} />
         </Routes>
       </div>
     );
