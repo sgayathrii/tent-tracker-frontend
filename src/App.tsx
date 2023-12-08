@@ -6,6 +6,7 @@ import CampingAreas from "./pages/CampingAreas";
 import Home from "./pages/Home";
 import BookingCamp from "./pages/BookingCamp";
 import BookingConfirmation from "./pages/BookingConfirmation";
+import CampingDetails from "./pages/CampingDetails";
 
 function App() {
   const location = useLocation();
@@ -23,6 +24,7 @@ function App() {
         />
         <Route path="/booking" element={<BookingCamp />} />
         <Route path="/confirmation" element={<BookingConfirmation />} />
+        <Route path="/camping-details/:id" element={<CampingDetails username={username} />} />
       </Routes>
     </div>
   );

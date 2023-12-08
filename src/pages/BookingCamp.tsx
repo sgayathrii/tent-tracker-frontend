@@ -7,7 +7,6 @@ const BookingCamp = () => {
   const campingAreaId = location.state.campingArea.id;
   const campingAreaName = location.state.campingArea.name;
   const username = location.state.username;
- 
 
   const [bookingDetails, setBookingDetails] = useState({
     name: username,

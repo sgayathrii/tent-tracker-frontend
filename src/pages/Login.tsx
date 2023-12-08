@@ -1,24 +1,22 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 const Login = () => {
+  const [formData, setFormData] = useState({ name: "", email: "" });
 
-    const [formData, setFormData] = useState({ name: '', email: '' });
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { name, value } = e.target;
-      setFormData((prevData) => ({ ...prevData, [name]: value }));
-    };
-  
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      navigate ('/camping-areas', {state: formData})
-    };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    navigate("/camping-areas", { state: formData });
+  };
 
-  return  (
+  return (
     <div className="login">
       <h2 className="login__header">Login Page</h2>
       <form className="login__form" onSubmit={handleSubmit}>
@@ -44,10 +42,12 @@ const Login = () => {
           />
         </label>
         <br />
-        <button type="submit">Submit</button>
+        <button type="submit" className="login__form__submit">
+          Submit
+        </button>
       </form>
     </div>
   );
-}
+};
 
-export default Login
+export default Login;
