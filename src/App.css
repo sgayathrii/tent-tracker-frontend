@@ -17,17 +17,16 @@ body {
 }
 
 .navbar {
-  background-color: #9587AD ;
+  background-color: #9587AD;
   color: white;
   padding: 10px;
-  display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
 
 .navbar__icons__logo {
-  height: 50px; 
+  height: 50px;
   margin-right: 10px;
   cursor: pointer;
   border-radius: 80px;
@@ -35,19 +34,47 @@ body {
 
 .navbar__icons__login,
 .navbar__icons__logout,
-.navbar__icons__book-camp{
-  height: 30px; 
+.navbar__icons__book-camp {
+  height: 30px;
   margin-right: 10px;
   cursor: pointer;
 }
 
+/* Login */
+
+.login {
+  margin-top: 10px;
+}
+
+.login__form__name input,
+.login__form__email input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.login__form__submit {
+  background-color: #819ba1;;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.login__form__submit:hover {
+  background-color: #2F8499;
+}
+
 /* Camping Area */
 .camping-container__area {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  flex-direction: column;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 1rem;
 }
 
 .camping-container__area__image {
@@ -61,12 +88,13 @@ body {
 
 /* Booking camp */
 .booking-camp {
-  max-width: 400px;
+  max-width: 100%; /* Use the full width for small screens */
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #9587AD;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px #4A4453;
+  background-color: #dfd8ea;;
 }
 
 .booking-camp__header {
@@ -105,7 +133,7 @@ body {
 }
 
 .booking-camp__button {
-  background-color: #4caf50;
+  background-color: #819ba1;
   color: white;
   padding: 10px;
   border: none;
@@ -115,5 +143,42 @@ body {
 }
 
 .booking-camp__button:hover {
-  background-color: #45a049;
+  background-color: #2F8499;
+}
+
+/* Home page */
+
+.slide-container {
+  position: relative;
+}
+
+.slide-container__camping-image {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  display: block;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 801px) {
+ 
+  .navbar {
+    flex-direction: row;
+  }
+
+  .camping-container__area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .booking-camp {
+    max-width: 400px;
+  }
+
+  .slide-container__camping-image {
+    max-height: 400px;
+  }
 }
