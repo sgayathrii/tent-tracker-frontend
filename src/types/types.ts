@@ -10,6 +10,10 @@ export type CampingAreaProps = {
     username: string;
   };
 
+export type CampingDetailsProps = {
+  username: string;
+}
+
 export type CampingArea = {
   id: number;
   name: string;
