@@ -15,7 +15,7 @@ const Login = () => {
   
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      navigate ('/', {state: formData})
+      navigate ('/camping-areas', {state: formData})
     };
 
   return  (
@@ -29,6 +29,7 @@ const Login = () => {
             name="name"
             value={formData.name}
             onChange={handleChange}
+            required
           />
         </label>
         <br />

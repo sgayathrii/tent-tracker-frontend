@@ -58,3 +58,62 @@ body {
 .camping-container__area__not-available {
   font-size: 14px;
 }
+
+/* Booking camp */
+.booking-camp {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.booking-camp__header {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.booking-camp__name {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.booking-camp__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-camp__form-field {
+  margin-bottom: 15px;
+}
+
+.booking-camp__label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.booking-camp__input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.booking-camp__button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.booking-camp__button:hover {
+  background-color: #45a049;
+}

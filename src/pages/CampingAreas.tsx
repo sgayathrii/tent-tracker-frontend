@@ -24,7 +24,8 @@ const CampingAreas = ({ username }: CampingAreaProps) => {
 
   const handleBookCamp = (campingAreaId: number) => {
     if (username) {
-      navigate("/booking", { state: campingAreaId });
+      const selectedCampingArea = campingAreas.find(area => area.id === campingAreaId);
+      navigate("/booking", { state: { campingArea: selectedCampingArea, username: username} });
     } else {
       navigate("/login");
     }
@@ -42,7 +43,7 @@ const CampingAreas = ({ username }: CampingAreaProps) => {
           />
           <p className="camping-container__area__name">{campingArea.name}</p>
           {campingArea.availability ? (
-            <button
+            <button type="submit"
               onClick={() => handleBookCamp(campingArea.id)}
               className="camping-container__area__book-button"
             >

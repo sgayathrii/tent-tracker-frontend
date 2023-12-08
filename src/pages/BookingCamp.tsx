@@ -4,10 +4,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 const BookingCamp = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const campingAreaId = location.state?.campingAreaId;
+  const campingAreaId = location.state.campingArea.id;
+  const campingAreaName = location.state.campingArea.name;
+  const username = location.state.username;
+ 
 
   const [bookingDetails, setBookingDetails] = useState({
-    name: "",
+    name: username,
     email: "",
     phone: "",
     fromDate: "",
@@ -15,94 +18,147 @@ const BookingCamp = () => {
     numberOfPeople: 1,
   });
 
-  const handleBooking = () => {
-    console.log("Booking details:", {
-      campingAreaId,
-      ...bookingDetails,
-    });
+  const handleBooking = async () => {
+    try {
+      const { name, email, phone, fromDate, toDate, numberOfPeople } =
+        bookingDetails;
 
-    navigate("/confirmation");
+      const fromDateFormatted = new Date(fromDate).toISOString();
+      const toDateFormatted = new Date(toDate).toISOString();
+
+      const response = await fetch(`http://localhost:8000/api/book-camp/book`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          campingAreaId: campingAreaId,
+          name: name,
+          email: email,
+          phone: phone,
+          fromDate: fromDateFormatted,
+          toDate: toDateFormatted,
+          numberOfPeople: numberOfPeople,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        navigate("/confirmation", { state: { bookingDetails, email } });
+      } else {
+        console.error(result.message);
+      }
+    } catch (error) {
+      console.error("Error booking camping area:", error);
+    }
   };
 
   return (
-    <div>
-      <h2>Booking Camp</h2>
-      <p>Camping Area ID: {campingAreaId}</p>
+    <div className="booking-camp">
+      <h2 className="booking-camp__header">Booking Camp</h2>
+      <p className="booking-camp__name">Camping Area: {campingAreaName}</p>
 
-      <form>
-        <label>
-          Name:
-          <input
-            type="text"
-            value={bookingDetails.name}
-            onChange={(e) =>
-              setBookingDetails({ ...bookingDetails, name: e.target.value })
-            }
-          />
-        </label>
-        <br />
-        <label>
-          Email:
-          <input
-            type="email"
-            value={bookingDetails.email}
-            onChange={(e) =>
-              setBookingDetails({ ...bookingDetails, email: e.target.value })
-            }
-          />
-        </label>
-        <br />
-        <label>
-          Phone:
-          <input
-            type="tel"
-            value={bookingDetails.phone}
-            onChange={(e) =>
-              setBookingDetails({ ...bookingDetails, phone: e.target.value })
-            }
-          />
-        </label>
-        <br />
-        <label>
-          From Date:
-          <input
-            type="date"
-            value={bookingDetails.fromDate}
-            onChange={(e) =>
-              setBookingDetails({
-                ...bookingDetails,
-                fromDate: e.target.value,
-              })
-            }
-          />
-        </label>
-        <br />
-        <label>
-          To Date:
-          <input
-            type="date"
-            value={bookingDetails.toDate}
-            onChange={(e) =>
-              setBookingDetails({ ...bookingDetails, toDate: e.target.value })
-            }
-          />
-        </label>
-        <br />
-        <label>
-          Number of People:
-          <input
-            type="number"
-            value={bookingDetails.numberOfPeople}
-            onChange={(e) =>
-              setBookingDetails({
-                ...bookingDetails,
-                numberOfPeople: Number(e.target.value),
-              })
-            }
-          />
-        </label>
-        <br />
-        <button type="button" onClick={handleBooking}>
+      <form className="booking-camp__form">
+        <div className="booking-camp__form-field">
+          <label className="booking-camp__label">
+            Name:
+            <input
+              type="text"
+              className="booking-camp__input"
+              value={bookingDetails.name}
+              onChange={(e) =>
+                setBookingDetails({ ...bookingDetails, name: e.target.value })
+              }
+            />
+          </label>
+        </div>
+
+        <div className="booking-camp__form-field">
+          <label className="booking-camp__label">
+            Email:
+            <input
+              type="email"
+              className="booking-camp__input"
+              value={bookingDetails.email}
+              onChange={(e) =>
+                setBookingDetails({ ...bookingDetails, email: e.target.value })
+              }
+              required
+            />
+          </label>
+        </div>
+
+        <div className="booking-camp__form-field">
+          <label className="booking-camp__label">
+            Phone:
+            <input
+              type="tel"
+              className="booking-camp__input"
+              value={bookingDetails.phone}
+              onChange={(e) =>
+                setBookingDetails({ ...bookingDetails, phone: e.target.value })
+              }
+            />
+          </label>
+        </div>
+
+        <div className="booking-camp__form-field">
+          <label className="booking-camp__label">
+            From Date:
+            <input
+              type="date"
+              className="booking-camp__input"
+              value={bookingDetails.fromDate}
+              onChange={(e) =>
+                setBookingDetails({
+                  ...bookingDetails,
+                  fromDate: e.target.value,
+                })
+              }
+              required
+            />
+          </label>
+        </div>
+
+        <div className="booking-camp__form-field">
+          <label className="booking-camp__label">
+            To Date:
+            <input
+              type="date"
+              className="booking-camp__input"
+              value={bookingDetails.toDate}
+              onChange={(e) =>
+                setBookingDetails({ ...bookingDetails, toDate: e.target.value })
+              }
+              required
+            />
+          </label>
+        </div>
+
+        <div className="booking-camp__form-field">
+          <label className="booking-camp__label">
+            Number of People:
+            <input
+              type="number"
+              className="booking-camp__input"
+              value={bookingDetails.numberOfPeople}
+              onChange={(e) =>
+                setBookingDetails({
+                  ...bookingDetails,
+                  numberOfPeople: Number(e.target.value),
+                })
+              }
+              required
+            />
+          </label>
+        </div>
+
+        <button
+          type="button"
+          className="booking-camp__button"
+          onClick={handleBooking}
+        >
           Book Camp
         </button>
       </form>
