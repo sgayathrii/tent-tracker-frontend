@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useUser } from "../contexts/UserContext";
 
 const BookingCamp = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const campingAreaId = location.state.campingArea.id;
   const campingAreaName = location.state.campingArea.name;
-  const username = location.state.username;
+  
+  const { user } = useUser(); 
 
   const [bookingDetails, setBookingDetails] = useState({
-    name: username,
+    name: user?.name,
     email: "",
     phone: "",
     fromDate: "",
