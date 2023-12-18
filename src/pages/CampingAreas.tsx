@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { CampingArea, CampingAreaProps } from "../types/types";
+import { CampingArea } from "../types/types";
 import { BASE_URL } from "../api";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../contexts/UserContext";
 
-const CampingAreas = ({ username }: CampingAreaProps) => {
+const CampingAreas = () => {
   const [campingAreas, setCampingAreas] = useState<CampingArea[]>([]);
-
   const navigate = useNavigate();
+
+  const { user } = useUser();
 
   const fetchCampingData = async () => {
     try {
@@ -23,9 +25,13 @@ const CampingAreas = ({ username }: CampingAreaProps) => {
   }, []);
 
   const handleBookCamp = (campingAreaId: number) => {
-    if (username) {
-      const selectedCampingArea = campingAreas.find(area => area.id === campingAreaId);
-      navigate("/booking", { state: { campingArea: selectedCampingArea, username: username} });
+    if (user) {
+      const selectedCampingArea = campingAreas.find(
+        (area) => area.id === campingAreaId
+      );
+      navigate("/booking", {
+        state: { campingArea: selectedCampingArea, username: user },
+      });
     } else {
       navigate("/login");
     }
@@ -43,7 +49,8 @@ const CampingAreas = ({ username }: CampingAreaProps) => {
           />
           <p className="camping-container__area__name">{campingArea.name}</p>
           {campingArea.availability ? (
-            <button type="submit"
+            <button
+              type="submit"
               onClick={() => handleBookCamp(campingArea.id)}
               className="camping-container__area__book-button"
             >

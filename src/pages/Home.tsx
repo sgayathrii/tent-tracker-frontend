@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
+import HomeImage from "../assets/home.jpg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import { CampingArea, HomeProps } from "../types/types";
+import { CampingArea } from "../types/types";
 
-const Home = ({ username }: HomeProps) => {
+const Home = () => {
   
   const fetchCampingAreas = async () => {
     try {
@@ -33,9 +34,11 @@ const Home = ({ username }: HomeProps) => {
   };
 
   return (
-    <div>
-      {username && <h2>Welcome {username}!</h2>}
-
+    <div className="home">
+      <h1 className="home__heading">Tent Tracker</h1>
+      <div>
+        <img src={HomeImage} alt="camping-home image" className="slider-container__home-image" />
+      </div>
       <Slider {...settings}>
         {campingAreas.map((campingArea) => (
           <div key={campingArea.id} className="slide-container">

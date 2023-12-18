@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../contexts/UserContext"; 
 
 const Login = () => {
   const [formData, setFormData] = useState({ name: "", email: "" });
-
+  const { loginUser } = useUser(); 
   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -13,6 +14,7 @@ const Login = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    loginUser(formData); 
     navigate("/camping-areas", { state: formData });
   };
 

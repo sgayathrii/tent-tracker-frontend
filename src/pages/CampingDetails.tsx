@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { CampingArea, CampingDetailsProps } from "../types/types";
+import { useParams, useNavigate} from "react-router-dom";
+import { CampingArea } from "../types/types";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { useUser } from "../contexts/UserContext";
 
-const CampingDetails = ({ username }: CampingDetailsProps) => {
+const CampingDetails = () => {
   const navigate = useNavigate();
+  
   const { id } = useParams<{ id: string }>();
   const campingAreaId = Number(id);
+  const { user } = useUser(); 
 
   const [campingArea, setCampingArea] = useState<CampingArea | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const fetchCampingArea = async () => {
     try {
@@ -19,6 +23,8 @@ const CampingDetails = ({ username }: CampingDetailsProps) => {
       setCampingArea(campingAreaData);
     } catch (error) {
       console.error("Error fetching camping area:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -28,13 +34,14 @@ const CampingDetails = ({ username }: CampingDetailsProps) => {
 
   const handleBookCamp = async () => {
     navigate("/booking", {
-      state: { campingArea: campingArea, username: username },
+      state: { campingArea: campingArea, username: user?.name },
     });
   };
 
   return (
     <div>
-      {campingArea && (
+      {loading && <p>Loading...</p>}
+      {!loading && campingArea && (
         <div>
           <h2>{campingArea.name}</h2>
           <div className="map-container">

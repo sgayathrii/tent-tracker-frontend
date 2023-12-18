@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type HomeProps = {
   username: string;
 };
@@ -21,3 +23,18 @@ export type CampingArea = {
   coordinates: { lat: number; lng: number };
   availability: boolean;
 };
+
+export type UserData = {
+  name: string;
+  email: string;
+}
+
+export type UserContextProps = {
+  user: UserData | null;
+  loginUser: (userData: UserData) => void;
+  logoutUser: () => void;
+}
+
+export type UserProviderProps = {
+    children: ReactNode;
+  }
