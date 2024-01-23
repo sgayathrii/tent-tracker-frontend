@@ -3,6 +3,7 @@ import { useParams, useNavigate} from "react-router-dom";
 import { CampingArea } from "../types/types";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { useUser } from "../contexts/UserContext";
+import { BASE_URL } from "../api";
 
 const CampingDetails = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const CampingDetails = () => {
   const fetchCampingArea = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/camping-areas/${campingAreaId}`
+        `${BASE_URL}/api/camping-areas/${campingAreaId}`
       );
       const campingAreaData = await response.json();
       setCampingArea(campingAreaData);
