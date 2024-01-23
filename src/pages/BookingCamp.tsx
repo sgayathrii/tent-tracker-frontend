@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useUser } from "../contexts/UserContext";
+import { BASE_URL } from "../api";
 
 const BookingCamp = () => {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ const BookingCamp = () => {
       const fromDateFormatted = new Date(fromDate).toISOString();
       const toDateFormatted = new Date(toDate).toISOString();
 
-      const response = await fetch(`http://localhost:8000/api/book-camp/book`, {
+      const response = await fetch(`${BASE_URL}/api/book-camp/book`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import HomeImage from "../assets/home.jpg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import { BASE_URL } from "../api";
 import { CampingArea } from "../types/types";
 
 const Home = () => {
   
   const fetchCampingAreas = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/camping-areas");
+      const response = await fetch(`${BASE_URL}/api/camping-areas`);
       const campingAreas = await response.json();
       setCampingAreas(campingAreas);
     } catch (error) {
