@@ -18,3 +18,6 @@ TentTracker is a web application aimed at simplifying camping area bookings. It 
 - Prisma
 - Supabase
 
+## Visit Project
+Visit the deployed project at TentTracker
+
