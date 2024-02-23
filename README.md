@@ -19,5 +19,7 @@ TentTracker is a web application aimed at simplifying camping area bookings. It 
 - Supabase
 
 ## Visit Project
-Visit the deployed project at TentTracker
+
+Visit the deployed project at: [TentTracker](https://sgayathrii.github.io/tent-tracker-frontend/)
+
 
